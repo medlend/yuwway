@@ -1,4 +1,5 @@
 services:
-#    yuwway_user.example:
-#        class: Yuwway\UserBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    yuwway.form.registration:
+        class: Yuwway\UserBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: yuwway_user_registration }
