@@ -8,6 +8,7 @@
 
 namespace Yuwway\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 /**
@@ -23,9 +24,34 @@ class Utilisateur extends BaseUser
      */
     protected $id;
 
+    /**
+     * @var Adresse
+     * @ORM\OneToMany(targetEntity="Yuwway\UserBundle\Entity\Adresse", mappedBy="user")
+     */
+    private $adresses ;
+
     public function __construct()
     {
         parent::__construct();
         // your own logic
+        $this->adresses = new ArrayCollection();
     }
+
+    /**
+     * @return Adresse
+     */
+    public function getAdresses()
+    {
+        return $this->adresses;
+    }
+
+    /**
+     * @param Adresse $adresses
+     */
+    public function setAdresses($adresses)
+    {
+        $this->adresses = $adresses;
+    }
+
+
 }
