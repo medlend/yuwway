@@ -45,18 +45,11 @@ class Adresse
 
     /**
      * Adresse constructor.
-     * @param $id
-     * @param $adresse
-     * @param $user
-     * @param $adresse_type
      */
-    public function __construct($id, $adresse, $user, $adresse_type)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->adresse = $adresse;
-        $this->user = $user;
-        $this->adresse_type = $adresse_type;
     }
+
 
     /**
      * @return mixed

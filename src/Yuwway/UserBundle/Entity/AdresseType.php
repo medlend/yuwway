@@ -29,7 +29,7 @@ class AdresseType
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=2, nullable=false)
+     * @ORM\Column(type="string", length=20, nullable=false)
      */
     private $label;
 
@@ -96,6 +96,10 @@ class AdresseType
         $this->adresse = $adresse;
     }
 
+    function __toString()
+    {
+        return $this->getLabel();
+    }
 
 
 }

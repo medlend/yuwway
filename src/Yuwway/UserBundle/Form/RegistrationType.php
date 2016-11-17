@@ -9,6 +9,7 @@
 namespace Yuwway\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class RegistrationType extends AbstractType
@@ -16,6 +17,11 @@ class RegistrationType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        $builder->add('phone', TextType::class, array(
+            'data' => '',
+        ));
+        $builder->add('captcha', 'Genemu\Bundle\FormBundle\Form\Core\Type\CaptchaType',array('mapped' => false,));
         $builder->add('captcha', 'Genemu\Bundle\FormBundle\Form\Core\Type\CaptchaType',array('mapped' => false,));
     }
 

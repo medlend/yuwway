@@ -59,28 +59,32 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
 
-# Swiftmailer Configuration
-swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
-
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Yuwway\UserBundle\Entity\Utilisateur
+    from_email:
+        address: medlend.fc@gmail.com
+        sender_name: medlend
+#    service:
+#        mailer: fos_user.mailer.twig_swift
     registration:
+        confirmation:
+            from_email: # Use this node only if you don't want the global email address for the confirmation email
+                address: medlend.fc@gmail.com
+                sender_name: lendmed
+            enabled:    true # change to true for required email confirmation
+#            template:   FOSUserBundle:Registration:email.txt.twig
         form:
             type: Yuwway\UserBundle\Form\RegistrationType
+
 
 genemu_form:
     captcha:
         enabled:          true
         width:            100
         height:           40
-        length:           4
+        length:           1
         format:           'png'
         chars:            '0123456789'
         font_size:        18
@@ -90,3 +94,4 @@ genemu_form:
         background_color: 'DDDDDD'
         border_color:     '000000'
         grayscale:        false
+

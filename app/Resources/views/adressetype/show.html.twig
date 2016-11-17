@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Adressetype</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ adresseType.id }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ adresseType.label }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('adressetype_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('adressetype_edit', { 'id': adresseType.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
