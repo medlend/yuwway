@@ -7,3 +7,14 @@ services:
         class: Yuwway\UserBundle\Security\EmailUserProvider
         arguments:
             - '@fos_user.user_manager'
+    image.uploader:
+        class: Yuwway\UserBundle\Services\FileUploader
+        arguments: ['%profile_image_directory%']
+
+    yuwway.doctrine_listener:
+        class: Yuwway\UserBundle\EventsListener\DoctrineListener
+        arguments: ['@image.uploader','%profile_image_directory%']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postLoad }

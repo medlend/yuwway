@@ -7,7 +7,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
-
+    profile_image_directory: '%kernel.root_dir%/../web/uploads/profile'
 framework:
     #esi:             ~
     translator:      ~ #{ fallbacks: ["%locale%"] }#
@@ -73,7 +73,7 @@ fos_user:
             from_email: # Use this node only if you don't want the global email address for the confirmation email
                 address: medlend.fc@gmail.com
                 sender_name: lendmed
-            enabled:    true # change to true for required email confirmation
+            enabled:    false # change to true for required email confirmation
 #            template:   FOSUserBundle:Registration:email.txt.twig
         form:
             type: Yuwway\UserBundle\Form\RegistrationType

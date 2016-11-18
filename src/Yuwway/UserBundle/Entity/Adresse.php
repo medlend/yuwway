@@ -33,9 +33,9 @@ class Adresse
     /**
      * @var Utilisateur
      *
-     * @ORM\ManyToOne(targetEntity="Yuwway\UserBundle\Entity\Utilisateur", inversedBy="adresses")
+     * @ORM\ManyToOne(targetEntity="Yuwway\UserBundle\Entity\Profile", inversedBy="adresses")
      */
-    private $user;
+    private $profile;
 
     /**
      * @var AdresseType
@@ -83,21 +83,7 @@ class Adresse
         $this->adresse = $adresse;
     }
 
-    /**
-     * @return Utilisateur
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 
-    /**
-     * @param Utilisateur $user
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-    }
 
     /**
      * @return AdresseType

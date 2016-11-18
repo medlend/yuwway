@@ -25,16 +25,24 @@ class Utilisateur extends BaseUser
      */
     protected $id;
 
-    /**
-     * @var Adresse
-     * @ORM\OneToMany(targetEntity="Yuwway\UserBundle\Entity\Adresse", mappedBy="user")
-     */
-    private $adresses ;
 
     /**
      * @ORM\Column(type="string", length=50)
      */
     private $phone;
+
+
+    /**
+     * @ORM\Column(type="boolean",nullable=true)
+     *
+     */
+    private $hvProfile;
+
+
+    /**
+     * @ORM\OneToOne(targetEntity="Yuwway\UserBundle\Entity\Profile", mappedBy="Utilisateur",cascade={"persist","remove"})
+     */
+    private $profile;
 
 
 //* @Assert\Regex(
@@ -46,24 +54,11 @@ class Utilisateur extends BaseUser
     {
         parent::__construct();
         // your own logic
-        $this->adresses = new ArrayCollection();
+        $this->profile=new Profile();
+        $this->profile->setUtilisateur($this);
     }
 
-    /**
-     * @return Adresse
-     */
-    public function getAdresses()
-    {
-        return $this->adresses;
-    }
 
-    /**
-     * @param Adresse $adresses
-     */
-    public function setAdresses($adresses)
-    {
-        $this->adresses = $adresses;
-    }
 
     /**
      * @return string
@@ -80,6 +75,40 @@ class Utilisateur extends BaseUser
     {
         $this->phone = $phone;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getHvProfile()
+    {
+        return $this->hvProfile;
+    }
+
+    /**
+     * @param mixed $hvProfile
+     */
+    public function setHvProfile($hvProfile)
+    {
+        $this->hvProfile = $hvProfile;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    /**
+     * @param mixed $profile
+     */
+    public function setProfile($profile)
+    {
+        $this->profile = $profile;
+    }
+
+
 
 
 }
