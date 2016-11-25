@@ -3,14 +3,107 @@
 {% block body %}
     <h1>Profile creation</h1>
 
+    {#{{ form_start(form) }}#}
+        {#{{ form_widget(form) }}#}
+       {##}
+    {#{{ form_end(form) }}#}
+
+
+    {#<div class="col-sm-5" id="container-ligneCommandes"#}
+         {#data-prototype="{% filter escape %}#}
+                                     {#{{ include('CybercomCrmBundle:Prototypes:ligneCommande.html.twig', { 'form': Form.ligneCommandes.vars.prototype }) }}#}
+                                     {#{% endfilter %}">#}
+    {#</div>#}
+
+
+    <div  id="container"
+         data-prototype="{% filter escape %}
+                                     {{ include('adresse/add.html.twig', { 'form': form.adresses.vars.prototype }) }}
+                                     {% endfilter %}">
+    </div>
+
+    <a href="#" id="add">add</a>
+
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+<table>
+    <tr id="add_adresse">
+
+    </tr>
+
+</table>
+
+
+
+
+
+    {% for adresse in form.adresses %}
+        {{ include(':adresse:add.html.twig', { 'form': adresse }) }}
+    {% endfor %}
+
+    {{ form_rest(form) }}
+
+
+    <input type="submit" value="Create" />
     {{ form_end(form) }}
+
 
     <ul>
         <li>
             <a href="{{ path('profile_index') }}">Back to the list</a>
         </li>
     </ul>
+
+
+
 {% endblock %}
+
+    {% block javascripts %}
+
+<script>
+    var index = "{{ form.adresses|length }}";
+    $(document).ready(function () {
+        $('#add').on('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+//alert('k');
+            addadresseForm();
+        });
+
+
+
+
+
+    function addadresseForm() {
+alert(index);
+        var $collectionHolder = $('#container');
+
+        // Get the data-prototype explained earlier
+        var prototype = $collectionHolder.data('prototype');
+
+        // get the new index
+        //  var index = $collectionHolder.data('index');
+
+        // Replace '__name__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        var newForm = prototype.replace(/__name__/g,index);
+
+        // increase the index with one for the next item
+        // $collectionHolder.data('index', index + 1);
+
+        index++;
+
+        // Display the form in the page in an li, before the "Add a tag" link li
+        $('#add_adresse').before(newForm);
+//        $('.delete-ligne-commande').click(function () {
+//            $(this).parent().parent().parent().remove();
+//        });
+
+
+    }
+
+    });
+
+</script>
+
+
+    {% endblock %}

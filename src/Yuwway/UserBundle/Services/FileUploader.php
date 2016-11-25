@@ -21,7 +21,8 @@ class FileUploader
 
     public function upload(UploadedFile $file)
     {
-//        $fileName = md5(uniqid()).'.'.$file->guessExtension();
+       //
+//        $fileName = md5(uniqid()).'.'.$file->guessExtension(); anonyme.jpg
         $fileName = md5($this->msTimeStamp()).'.'.$file->guessExtension();
 
         $file->move($this->targetDir, $fileName);

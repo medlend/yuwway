@@ -56,12 +56,14 @@ class DoctrineListener
     {
 
         $entity = $args->getEntity();
-//dump($entity);die;
+//dump($entity);
         if (!$entity instanceof Profile) {
             return;
         }
 
         $fileName = $entity->getImage();
+
+        if(!$fileName) return;
 
         $this->ancienImgName=$this->targetPath.'/'.$fileName;
         //dump(file_exists($this->targetPath.'/'.$fileName));die;

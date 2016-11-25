@@ -44,12 +44,6 @@ class ProfileController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-//            $image=$profile->getImage();
-//            $filename=$this->get('image.uploader')->upload($image);
-//            $profile->setImage($filename);
-
-            //dump($profile);die();
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($profile);
             $em->flush($profile);

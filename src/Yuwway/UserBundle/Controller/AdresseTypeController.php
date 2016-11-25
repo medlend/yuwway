@@ -43,6 +43,8 @@ class AdresseTypeController extends Controller
         $form = $this->createForm('Yuwway\UserBundle\Form\AdresseTypeType', $adresseType);
         $form->handleRequest($request);
 
+//        dump('test');die;
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($adresseType);

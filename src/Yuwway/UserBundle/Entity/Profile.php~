@@ -1,0 +1,89 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 18/11/16
+ * Time: 09:00
+ */
+
+namespace Yuwway\UserBundle\Entity;
+
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="profile")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class Profile
+{
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+    /**
+     * @var string
+     *
+     *
+     * @ORM\Column(type="string", length=20,nullable=true)
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=20,nullable=true)
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=20,nullable=true)
+     */
+    private $gender;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255,nullable=true)
+     *
+     * @Assert\Image(
+     *      maxSize="1024k",
+     *      mimeTypes = { "image/png","image/jpeg", "image/jpg", "image/gif" },
+     *      mimeTypesMessage = "Please upload a valid Image"
+     * )
+     */
+    private $image;
+
+    /**
+     * @var
+     * @ORM\OneToOne(targetEntity="Yuwway\UserBundle\Entity\Utilisateur", inversedBy="profile")
+     */
+    private $Utilisateur;
+
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="Yuwway\UserBundle\Entity\Adresse", mappedBy="profile",cascade={"persist","remove"})
+     */
+    private $adresses;
+
+    /**
+     * Profile constructor.
+     */
+    public function __construct()
+    {
+        $this->adresses = new ArrayCollection();
+    }
+
+}

@@ -26,7 +26,7 @@ class Adresse
     /**
      * @var string
      *
-     * @ORM\Column(type="string", length=2, nullable=false)
+     * @ORM\Column(type="string", length=20, nullable=false)
      */
     private $adresse;
 
@@ -52,7 +52,9 @@ class Adresse
 
 
     /**
-     * @return mixed
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -60,15 +62,23 @@ class Adresse
     }
 
     /**
-     * @param mixed $id
+     * Set adresse
+     *
+     * @param string $adresse
+     *
+     * @return Adresse
      */
-    public function setId($id)
+    public function setAdresse($adresse)
     {
-        $this->id = $id;
+        $this->adresse = $adresse;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get adresse
+     *
+     * @return string
      */
     public function getAdresse()
     {
@@ -76,30 +86,50 @@ class Adresse
     }
 
     /**
-     * @param mixed $adresse
+     * Set profile
+     *
+     * @param \Yuwway\UserBundle\Entity\Profile $profile
+     *
+     * @return Adresse
      */
-    public function setAdresse($adresse)
+    public function setProfile(\Yuwway\UserBundle\Entity\Profile $profile = null)
     {
-        $this->adresse = $adresse;
+        $this->profile = $profile;
+
+        return $this;
     }
 
-
+    /**
+     * Get profile
+     *
+     * @return \Yuwway\UserBundle\Entity\Profile
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
 
     /**
-     * @return AdresseType
+     * Set adresseType
+     *
+     * @param \Yuwway\UserBundle\Entity\AdresseType $adresseType
+     *
+     * @return Adresse
+     */
+    public function setAdresseType(\Yuwway\UserBundle\Entity\AdresseType $adresseType = null)
+    {
+        $this->adresse_type = $adresseType;
+
+        return $this;
+    }
+
+    /**
+     * Get adresseType
+     *
+     * @return \Yuwway\UserBundle\Entity\AdresseType
      */
     public function getAdresseType()
     {
         return $this->adresse_type;
     }
-
-    /**
-     * @param AdresseType $adresse_type
-     */
-    public function setAdresseType($adresse_type)
-    {
-        $this->adresse_type = $adresse_type;
-    }
-
-
 }

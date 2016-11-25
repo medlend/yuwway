@@ -3,6 +3,7 @@
 namespace Yuwway\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,6 +19,11 @@ class ProfileType extends AbstractType
             ->add('lastName')
             ->add('gender')
             ->add('image', FileType::class, array('label' => 'Profile image'))
+            ->add('adresses', CollectionType::class, [
+                'entry_type' => AdresseType::class,
+                'allow_add' => true,
+                'allow_delete' => true
+            ])
 
         ;
     }

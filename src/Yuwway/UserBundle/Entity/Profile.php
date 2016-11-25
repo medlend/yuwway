@@ -73,16 +73,24 @@ class Profile
     private $Utilisateur;
 
     /**
+     * @var
+     * @ORM\OneToMany(targetEntity="Yuwway\UserBundle\Entity\Adresse", mappedBy="profile",cascade={"persist","remove"})
+     */
+    private $adresses;
+
+    /**
      * Profile constructor.
      */
     public function __construct()
     {
-        $this->adresses = new ArrayCollection();
+//        $this->adresses= new ArrayCollection();
     }
 
 
     /**
-     * @return int
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -90,30 +98,22 @@ class Profile
     }
 
     /**
-     * @param int $id
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return Profile
      */
-    public function setId($id)
+    public function setFirstName($firstName)
     {
-        $this->id = $id;
+        $this->firstName = $firstName;
+
+        return $this;
     }
 
     /**
-     * @return Adresse
-     */
-    public function getAdresses()
-    {
-        return $this->adresses;
-    }
-
-    /**
-     * @param Adresse $adresses
-     */
-    public function setAdresses($adresses)
-    {
-        $this->adresses = $adresses;
-    }
-
-    /**
+     * Get firstName
+     *
      * @return string
      */
     public function getFirstName()
@@ -122,14 +122,22 @@ class Profile
     }
 
     /**
-     * @param string $firstName
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return Profile
      */
-    public function setFirstName($firstName)
+    public function setLastName($lastName)
     {
-        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+
+        return $this;
     }
 
     /**
+     * Get lastName
+     *
      * @return string
      */
     public function getLastName()
@@ -138,14 +146,22 @@ class Profile
     }
 
     /**
-     * @param string $lastName
+     * Set gender
+     *
+     * @param string $gender
+     *
+     * @return Profile
      */
-    public function setLastName($lastName)
+    public function setGender($gender)
     {
-        $this->lastName = $lastName;
+        $this->gender = $gender;
+
+        return $this;
     }
 
     /**
+     * Get gender
+     *
      * @return string
      */
     public function getGender()
@@ -154,14 +170,22 @@ class Profile
     }
 
     /**
-     * @param string $gender
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Profile
      */
-    public function setGender($gender)
+    public function setImage($image)
     {
-        $this->gender = $gender;
+        $this->image = $image;
+
+        return $this;
     }
 
     /**
+     * Get image
+     *
      * @return string
      */
     public function getImage()
@@ -170,15 +194,23 @@ class Profile
     }
 
     /**
-     * @param string $image
+     * Set utilisateur
+     *
+     * @param \Yuwway\UserBundle\Entity\Utilisateur $utilisateur
+     *
+     * @return Profile
      */
-    public function setImage($image)
+    public function setUtilisateur(\Yuwway\UserBundle\Entity\Utilisateur $utilisateur = null)
     {
-        $this->image = $image;
+        $this->Utilisateur = $utilisateur;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get utilisateur
+     *
+     * @return \Yuwway\UserBundle\Entity\Utilisateur
      */
     public function getUtilisateur()
     {
@@ -186,13 +218,36 @@ class Profile
     }
 
     /**
-     * @param mixed $Utilisateur
+     * Add adress
+     *
+     * @param \Yuwway\UserBundle\Entity\Adresse $adress
+     *
+     * @return Profile
      */
-    public function setUtilisateur($Utilisateur)
+    public function addAdress(\Yuwway\UserBundle\Entity\Adresse $adress)
     {
-        $this->Utilisateur = $Utilisateur;
+        $adress->setProfile($this);
+        $this->adresses[] = $adress;
+        return $this;
     }
 
+    /**
+     * Remove adress
+     *
+     * @param \Yuwway\UserBundle\Entity\Adresse $adress
+     */
+    public function removeAdress(\Yuwway\UserBundle\Entity\Adresse $adress)
+    {
+        $this->adresses->removeElement($adress);
+    }
 
-
+    /**
+     * Get adresses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAdresses()
+    {
+        return $this->adresses;
+    }
 }

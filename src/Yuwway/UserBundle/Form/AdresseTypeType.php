@@ -17,10 +17,7 @@ class AdresseTypeType extends AbstractType
     {
 
         $builder->add('label', TextType::class, array(
-            'attr' => array('maxlength' => 15,
-
-                        ),
-
+            'attr' => array('maxlength' => 15, ),
         ));
     }
     

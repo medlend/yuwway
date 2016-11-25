@@ -1,0 +1,53 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 15/11/16
+ * Time: 15:53
+ */
+
+namespace Yuwway\UserBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="adresse")
+ */
+class Adresse
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=20, nullable=false)
+     */
+    private $adresse;
+
+    /**
+     * @var Utilisateur
+     *
+     * @ORM\ManyToOne(targetEntity="Yuwway\UserBundle\Entity\Profile", inversedBy="adresses")
+     */
+    private $profile;
+
+    /**
+     * @var AdresseType
+     * @ORM\ManyToOne(targetEntity="Yuwway\UserBundle\Entity\AdresseType", inversedBy="adresse")
+     */
+    private $adresse_type;
+
+    /**
+     * Adresse constructor.
+     */
+    public function __construct()
+    {
+    }
+
+}
