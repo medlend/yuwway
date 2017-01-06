@@ -37,9 +37,11 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form_themes:
-        - LexikFormFilterBundle:Form:form_div_layout.html.twig
+         - bootstrap_3_layout.html.twig
+#    form_themes:
+#        - LexikFormFilterBundle:Form:form_div_layout.html.twig
 #    form:
-#        resources: ['app/Resources/views/form/theme.html.twig']
+#        resources: ['app/Resources/views/formm/theme.html.twig']
 
 # Doctrine Configuration
 doctrine:
@@ -109,3 +111,16 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+fos_comment:
+    db_driver: orm
+    class:
+        model:
+            comment: Medlend\PUGXBundle\Entity\Comment
+            thread: Medlend\PUGXBundle\Entity\Thread
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
+    bundles: [ "FOSCommentBundle" ]

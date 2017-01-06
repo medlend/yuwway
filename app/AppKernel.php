@@ -21,6 +21,10 @@ class AppKernel extends Kernel
             new Yuwway\UserBundle\YuwwayUserBundle(),
             new Medlend\PUGXBundle\MedlendPUGXBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new FOS\CommentBundle\FOSCommentBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

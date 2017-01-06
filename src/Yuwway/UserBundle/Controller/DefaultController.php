@@ -37,7 +37,7 @@ class DefaultController extends Controller
         $formHandler = new ContactHandler($contactForm, $request, $this->get('mailer'));
 
         $process = $formHandler->process();
-        die('a');
+       // die('a');
 
         if ($request->isMethod('POST')) {
             // On fait le lien Requête <-> Formulaire
